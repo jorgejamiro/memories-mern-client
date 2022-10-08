@@ -7,7 +7,7 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import moment from 'moment';
 
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { deletePost, likePost } from '../../../actions/posts';
 
 import useStyles from './Post.styles';
@@ -16,7 +16,7 @@ const Post = ({ post, setCurrentId }) => {
   const [likes, setLikes] = useState(post.likes);
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
 
   const userId = user?.result?.sub || user?.result?._id;
@@ -42,7 +42,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   const openPost = () => {
-    history.push(`/posts/${post._id}`);
+    navigate(`/posts/${post._id}`);
   };
 
   const Likes = () => {

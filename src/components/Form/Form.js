@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
@@ -21,7 +21,7 @@ const Form = ({ currentId, setCurrentId }) => {
                   currentId ? state.posts.posts.find((p) => p._id === currentId) : null); // these 'posts' come from 'combineReducers' from Reducers/index.js
   const [postData, setPostData] = useState(initialState);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyles();
 
@@ -36,7 +36,7 @@ const Form = ({ currentId, setCurrentId }) => {
     if (currentId) {
       dispatch(updatePost(currentId, {...postData, name: user?.result?.name }));
     } else {
-      dispatch(createPost({...postData, name: user?.result?.name }, history));
+      dispatch(createPost({...postData, name: user?.result?.name }, navigate));
     }
     clear();
   };

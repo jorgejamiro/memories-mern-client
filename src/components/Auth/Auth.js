@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import LockIcon from '@mui/icons-material/Lock';
@@ -25,7 +25,7 @@ const Auth = () => {
     const [isSignUp, setIsSignUp] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState);
     const classes = useStyles();
 
@@ -35,9 +35,9 @@ const Auth = () => {
         e.preventDefault();
         
         if (isSignUp) {
-            dispatch(signup(formData, history));
+            dispatch(signup(formData, navigate));
         } else {
-            dispatch(signin(formData, history));
+            dispatch(signin(formData, navigate));
         }
     };
 
@@ -56,7 +56,7 @@ const Auth = () => {
 
         try {
             dispatch({ type: 'AUTH', data: { result, token } });
-            history.push('/');
+            navigate('/');
         } catch (error) {
            console.log(error) 
         }
