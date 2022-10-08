@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Grow, Grid, Container, Paper, AppBar, TextField, Button } from '@material-ui/core';
-import ChipInput from 'material-ui-chip-input';
+//import ChipInput from 'material-ui-chip-input';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { getPostsBySearch } from '../../actions/posts';
@@ -67,14 +67,7 @@ const Home = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)} 
               />
-              <ChipInput 
-                style={{ margin: '10px 0'}}
-                value={tags}
-                onAdd={handleAdd}
-                onDelete={handleDelete}
-                label='Search Tags (using "Enter")'
-                variant='outlined'
-              />
+
               <Button onClick={searchPost} className={classes.searchButton} variant='contained' color='primary'>Search</Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} elevation={6} />
