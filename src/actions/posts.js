@@ -42,12 +42,12 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     }
 };
 
-export const createPost = (newPost, history) => async (dispatch) => {
+export const createPost = (newPost, navigate) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data } = await api.createPost(newPost);
 
-        history.push(`/posts/${data._id}`);
+        navigate(`/posts/${data._id}`);
 
         dispatch({ type: CREATE, payload: data })
         dispatch({ type: END_LOADING });

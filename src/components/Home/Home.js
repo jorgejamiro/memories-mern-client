@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { Grow, Grid, Container, Paper, AppBar, TextField, Button } from '@material-ui/core';
 //import ChipInput from 'material-ui-chip-input';
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { getPostsBySearch } from '../../actions/posts';
@@ -44,9 +45,20 @@ const Home = () => {
       }
     };
 
-    const handleAdd = (tag) => setTags([...tags, tag]);
-
-    const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete));
+    const handleKeyDown = event => {
+      switch (event.key) {
+        case ",":
+        case " ": {
+          event.preventDefault();
+          event.stopPropagation();
+          if (event.target.value.length > 0) {
+            setTags([...tags, event.target.value]);
+          }
+          break;
+        }
+        default:
+      }
+    };
 
   
   return (
@@ -66,6 +78,30 @@ const Home = () => {
                 fullWidth 
                 value={search}
                 onChange={(e) => setSearch(e.target.value)} 
+              />
+
+              <Autocomplete
+                multiple
+                freeSolo
+                id="tags-outlined"
+                options={[]}
+                getOptionLabel={option => option.title || option}
+                value={tags}
+                onChange={(event, newValue) => setTags(newValue)}
+                filterSelectedOptions
+                renderInput={params => {
+                  params.inputProps.onKeyDown = handleKeyDown;
+                  return (
+                    <TextField
+                      {...params}
+                      style={{ margin: '10px 0'}}
+                      variant="outlined"
+                      label='Search Tags (using "Enter")'
+                      margin="normal"
+                      fullWidth
+                    />
+                  );
+                }}
               />
 
               <Button onClick={searchPost} className={classes.searchButton} variant='contained' color='primary'>Search</Button>
