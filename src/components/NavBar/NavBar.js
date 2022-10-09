@@ -10,6 +10,7 @@ import useStyles from './NavBar.styles';
 import memoriesLogo from '../../images/memories-Logo.png';
 import memoriesText from '../../images/memories-Text.png';
 
+
 const NavBar = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -38,9 +39,9 @@ const NavBar = () => {
     return (
         <AppBar className={classes.appBar} position='static' color='inherit'>
             <Link to='/' className={classes.brandContainer}>
-                <img src={memoriesText} alt='icon' height='45px' />
-                <img className={classes.image} src={memoriesLogo} alt='icon' height='40px' />
-            </Link>   
+                <img className={classes.logo} src={memoriesText} alt='icon' />
+                <img className={classes.image} src={memoriesLogo} alt='icon' />
+            </Link>
             <Toolbar className={classes.toolbar}>
                 {
                     user ? (
@@ -53,10 +54,10 @@ const NavBar = () => {
                                 {user.result.name.charAt(0)}
                             </Avatar>
                             <Typography className={classes.userName} variant='h6'>{user.result.name}</Typography>
-                            <Button variant='contained' className={classes.logout} color='secondary' onClick={logout}>Logout</Button>
+                            <Button className={classes.logout} variant='contained'  color='secondary' onClick={logout}>Logout</Button>
                         </div>
                     ) : (
-                        <Button component={Link} to='/auth' variant='contained' color='primary'>Sign In</Button>
+                        <Button className={classes.signIn} component={Link} to='/auth' variant='contained' color='primary'>Sign In</Button>
                     )
                 }
             </Toolbar>

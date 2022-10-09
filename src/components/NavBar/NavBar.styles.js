@@ -21,15 +21,26 @@ export default makeStyles((theme) => ({
     fontWeight: 300,
   },
   image: {
+    height: '40px',
     marginLeft: '10px',
     marginTop: '5px',
+    [theme.breakpoints.down('sm')]: {
+      height: '20px',
+    },
   },
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '70%',
     [theme.breakpoints.down('sm')]: {
-      width: 'auto',
+      width: '400px',
+      justifyContent: 'space-around',
+    },
+  },
+  logo: {
+    height: '45px',
+    [theme.breakpoints.down('sm')]: {
+      height: '20px',
     },
   },
   profile: {
@@ -38,13 +49,25 @@ export default makeStyles((theme) => ({
     width: 'auto',
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
-      width: 'auto',
-      marginTop: 20,
-      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+    },
+  },
+  signIn: {
+    marginLeft: '40px',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 0,
+      height: '30px',
+      fontSize: '9px',
     },
   },
   logout: {
     marginLeft: '40px',
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: '20px',
+      height: '30px',
+      fontSize: '9px',
+    },
   },
   userName: {
     display: 'flex',
@@ -52,11 +75,11 @@ export default makeStyles((theme) => ({
     textAlign: 'center',
     width: 'auto',
     marginLeft: '20px',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.8rem',
+    },
   },
   brandContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '30%',
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
