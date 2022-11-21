@@ -1,0 +1,25 @@
+{
+  "Sign In": "Sign In",
+  "Logout": "Logout",
+  "Search": "Search",
+  "Editing": "Editing a Memory",
+  "Creating": "Creating a Memory",
+  "Title": "Title",
+  "Message": "Message",
+  "Submit": "Submit",
+  "Clear": "Clear",
+  "You and": "You and",
+  "others": "others",
+  "Created by:": "Created by:",
+  "Comments": "Comments",
+  "Write a Comment": "Write a Comment",
+  "Comment": "Comment",
+  "Post": "Post",
+  "Delete": "Delete",
+  
+  "searchMemories": "Search Memories",
+  "searchTags": "Search Tags (using 'Enter')",
+  "editTags": "Tags (',' separated)",
+  "msgToLogIn": "Please, sign in in order to create your own memories and like other's memories as well",
+  "msgRelatedPosts": "You might also like:"
+}

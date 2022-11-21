@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
@@ -24,6 +25,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('profile'));
   const classes = useStyles();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (post) setPostData(post);
@@ -45,7 +47,7 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
       <Paper className={classes.paper}>
         <Typography variant='h6' align='center'>
-          Please, Sign In to create your own memories and like other's memories as well
+          {t('msgToLogIn')}
         </Typography>
       </Paper>
     );
@@ -60,12 +62,12 @@ const Form = ({ currentId, setCurrentId }) => {
     <Paper className={classes.paper} elevation={6}>
       <form autoComplete='off' noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
         <Typography variant='h6'>
-          { currentId ? 'Editing' : 'Creating' } a Memory
+          { currentId ? t('Editing') : t('Creating') }
         </Typography>
         <TextField 
           name='title' 
           variant='outlined' 
-          label='Title' 
+          label={t('Title')} 
           fullWidth 
           value={postData.title} 
           onChange={(e) => setPostData({ ...postData, title: e.target.value })} 
@@ -73,7 +75,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField 
           name='message' 
           variant='outlined' 
-          label='Message'
+          label={t('Message')}
           multiline={true}
           minRows={3}
           fullWidth 
@@ -83,7 +85,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField 
           name='tags' 
           variant='outlined' 
-          label='Tags ("," separated)'
+          label={t('editTags')}
           fullWidth 
           value={postData.tags} 
           onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} 
@@ -96,10 +98,10 @@ const Form = ({ currentId, setCurrentId }) => {
           />
         </div>
         <Button className={classes.buttonSubmit} variant='contained' color='primary' size='large' type='submit' fullWidth>
-          Submit
+          {t('Submit')}
         </Button>
         <Button variant='contained' color='secondary' size='small' onClick={clear} fullWidth>
-          Clear
+          {t('Clear')}
         </Button>
       </form>
     </Paper>

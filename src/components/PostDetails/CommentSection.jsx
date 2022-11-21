@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Typography, TextField, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { commentPost } from '../../actions/posts';
 
@@ -13,6 +14,7 @@ const CommentSection = ({ post }) => {
     const dispatch = useDispatch();
     const commentsRef = useRef();  
     const user = JSON.parse(localStorage.getItem('profile'));
+    const { t } = useTranslation();
 
     const handleClick = async () => {
         const finalComment = `${user.result.name}: ${comment}`;
@@ -28,7 +30,7 @@ const CommentSection = ({ post }) => {
         <div>
             <div className={classes.commentsOuterContainer}>
                 <div className={classes.commentsInnerContainer}>
-                    <Typography gutterBottom variant='h6'>Comments</Typography>
+                    <Typography gutterBottom variant='h6'>{t('Comments')}</Typography>
                     {
                         comments.map((comment, i) => (
                             <Typography key={i} gutterBottom variant='subtitle1'>
@@ -42,13 +44,13 @@ const CommentSection = ({ post }) => {
                 {
                     user?.result?.name && (
                         <div style={{ width: '70%' }}>
-                            <Typography gutterBottom variant='h6'>Write a Comment</Typography>
+                            <Typography gutterBottom variant='h6'>{t('Write a Comment')}</Typography>
                             <TextField 
                                 fullWidth
                                 multiline
                                 minRows={4}
                                 variant='outlined'
-                                label='Comment'
+                                label={t('Comment')}
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                             />
@@ -60,7 +62,7 @@ const CommentSection = ({ post }) => {
                                 color='primary'
                                 onClick={handleClick}
                             >
-                                Comment
+                                {t('Post')}
                             </Button>
                         </div>
                     )

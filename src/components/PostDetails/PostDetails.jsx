@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Paper, Typography, CircularProgress, Divider } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+
 import moment from 'moment';
+
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { getPost, getPostsBySearch } from '../../actions/posts';
@@ -9,13 +12,16 @@ import CommentSection from './CommentSection';
 
 import useStyles from './PostDetails.styles';
 
-
 const PostDetails = () => {
     const { post, posts, isLoading } = useSelector((state) => state.posts);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { id } = useParams();
     const classes = useStyles();
+    const { t, i18n } = useTranslation();
+    const lng = i18n.language;
+
+    moment.locale(lng);
 
     useEffect(() => {
         dispatch(getPost(id));
@@ -46,10 +52,12 @@ const PostDetails = () => {
                         <Typography variant="h3" component="h2">{post.title}</Typography>
                         <Typography gutterBottom variant="h6" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
                         <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
-                        <Typography variant="h6">Created by: {post.name}</Typography>
-                        <Typography variant="body1">{moment(post.createdAt).fromNow()}</Typography>
-                        <Divider style={{ margin: '20px 0' }} />
-                        <Typography variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
+                        <Typography variant="h6">{t('Created by:')} {post.name}</Typography>
+                        <Typography variant="body1">
+                            {
+                                moment(post.createdAt).fromNow()
+                            }
+                        </Typography>
                         <Divider style={{ margin: '20px 0' }} />
                         <CommentSection post={post} />
                         <Divider style={{ margin: '20px 0' }} />
@@ -61,7 +69,7 @@ const PostDetails = () => {
                 {
                     recommendedPosts.length > 0 && (
                         <div className={classes.section}>
-                            <Typography gutterBottom variant='h5'>You might also like:</Typography>
+                            <Typography gutterBottom variant='h5'>{t('msgRelatedPosts')}</Typography>
                             <Divider />
                             <div className={classes.recommendedPosts}>
                                 {

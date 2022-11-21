@@ -1,0 +1,25 @@
+{
+  "Sign In": "Acceso",
+  "Logout": "Salir",
+  "Search": "Buscar",
+  "Editing": "Editando un Recuerdo",
+  "Creating": "Creando un Recuerdo",
+  "Title": "Título",
+  "Message": "Mensaje",
+  "Submit": "Registrar",
+  "Clear": "Eliminar",
+  "You and": "Tú y",
+  "others": "más",
+  "Created by:": "Creado por:",
+  "Comments": "Comentarios",
+  "Write a Comment": "Escribe un comentario",
+  "Comment": "Comentario",
+  "Post": "Enviar",
+  "Delete": "Eliminar",
+
+  "searchMemories": "Buscar Recuerdos",
+  "searchTags": "Buscar Etiquetas (usando 'Intro')",
+  "editTags": "Etiquetas (separadas por ',')",
+  "msgToLogIn": "Por favor, accede con tu usuario para poder crear tus propios recuerdos y opinar sobre los del resto de usuarios también",
+  "msgRelatedPosts": "También puede gustarte:"
+}

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 import moment from 'moment';
 
 import { useDispatch } from 'react-redux';
@@ -18,8 +20,11 @@ const Post = ({ post, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const navigate = useNavigate();
   const classes = useStyles();
-
   const userId = user?.result?.sub || user?.result?._id;
+  const { t, i18n } = useTranslation();
+  const lng = i18n.language;
+
+  moment.locale(lng);
 
   const handleLike = async (e) => {
     e.stopPropagation();
@@ -50,7 +55,7 @@ const Post = ({ post, setCurrentId }) => {
       return likes.find((like) => like === userId)  // user liked post
         ? (
           <><ThumbUpAltIcon fontSize='small' />
-            &nbsp;{likes.length > 2 ? `You and ${likes.length -1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}`}
+            &nbsp;{likes.length > 2 ? `${t('You and')} ${likes.length -1} ${t('others')}` : `${likes.length} like${likes.length > 1 ? 's' : ''}`}
           </>
         ) : (
           <>
@@ -62,7 +67,7 @@ const Post = ({ post, setCurrentId }) => {
         return <><ThumbUpOffAltIcon fontSize='small' />&nbsp;Like</>;
     }
   };
-  
+
 
   return (
     <Card className={classes.card} raised elevation={6}>
@@ -116,7 +121,7 @@ const Post = ({ post, setCurrentId }) => {
             color='secondary' 
             onClick={handleDelete}>
             <DeleteIcon fontSize='small' />
-            Delete
+            {t('Delete')}
           </Button>
         )}
       </CardActions>  

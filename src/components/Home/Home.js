@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { Grow, Grid, Container, Paper, AppBar, TextField, Button } from '@material-ui/core';
 //import ChipInput from 'material-ui-chip-input';
@@ -29,6 +30,7 @@ const Home = () => {
     const navigate = useNavigate();
     const page = query.get('page') || 1; // if not given page we must be on the first one as default
     const classes = useStyles();
+    const { t } = useTranslation();
 
     const searchPost = () => {
       if (search.trim() || tags) {
@@ -73,7 +75,7 @@ const Home = () => {
               <TextField 
                 name='search' 
                 variant='outlined' 
-                label='Search Memories'
+                label={t('searchMemories')}
                 onKeyPress={handleKeyPress} 
                 fullWidth 
                 value={search}
@@ -96,7 +98,7 @@ const Home = () => {
                       {...params}
                       style={{ margin: '10px 0'}}
                       variant="outlined"
-                      label='Search Tags (using "Enter")'
+                      label={t('searchTags')}
                       margin="normal"
                       fullWidth
                     />
@@ -104,7 +106,7 @@ const Home = () => {
                 }}
               />
 
-              <Button onClick={searchPost} className={classes.searchButton} variant='contained' color='primary'>Search</Button>
+              <Button onClick={searchPost} className={classes.searchButton} variant='contained' color='primary'>{t('Search')}</Button>
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} elevation={6} />
             {
